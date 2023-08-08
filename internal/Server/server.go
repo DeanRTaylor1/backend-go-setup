@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	authentication "github.com/deanrtaylor1/backend-go/internal/Auth"
 	"github.com/deanrtaylor1/backend-go/internal/config"
 	"github.com/deanrtaylor1/backend-go/internal/controllers/basecontrollers"
 	"github.com/deanrtaylor1/backend-go/internal/controllers/domain/authcontrollers"
@@ -31,8 +32,9 @@ func NewServer(config config.EnvConfig, store db.Store, router *chi.Mux) *Server
 	}
 }
 
-func (s *Server) RegisterMiddlewares() {
+func (s *Server) RegisterMiddlewares(authenticator authentication.Authenticator, store db.Store) {
 	s.Router.Use(middleware.ColorLoggingMiddleware)
+	s.Router.Use(middleware.AuthMiddleware(authenticator, store))
 }
 
 func (s *Server) RegisterRoutes(router *chi.Mux) {

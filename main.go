@@ -6,6 +6,7 @@ import (
 	"log"
 	"time"
 
+	authentication "github.com/deanrtaylor1/backend-go/internal/Auth"
 	server "github.com/deanrtaylor1/backend-go/internal/Server"
 	"github.com/deanrtaylor1/backend-go/internal/config"
 	"github.com/deanrtaylor1/backend-go/internal/constants"
@@ -60,7 +61,11 @@ func main() {
 	store := db.NewStore(conn)
 	router := chi.NewMux()
 	s := server.NewServer(config, store, router)
-	s.RegisterMiddlewares()
+	authenticator, err := authentication.New()
+	if err != nil {
+		panic("Unable to create authenticator")
+	}
+	s.RegisterMiddlewares(*authenticator, store)
 	s.RegisterRoutes(router)
 
 	s.Start()

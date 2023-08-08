@@ -7,7 +7,6 @@ import (
 
 	"github.com/deanrtaylor1/backend-go/internal/controllers/basecontrollers"
 	db "github.com/deanrtaylor1/backend-go/internal/db/sqlc"
-	"github.com/deanrtaylor1/backend-go/internal/util"
 	"github.com/go-chi/chi"
 	"github.com/go-playground/validator/v10"
 )
@@ -52,10 +51,10 @@ func (a *AuthController) SignUp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err, res := util.ValidateStruct(a.Validator, params, a.Config)
-	if err != nil {
-		util.SendResponse(w, res.Code, res)
-	}
+	// err, res := util.ValidateStruct(a.Validator, params, a.Config)
+	// if err != nil {
+	// 	util.SendResponse(w, res.Code, res)
+	// }
 
 	createUser := db.CreateUserParams{
 		Email:          params.Email,
