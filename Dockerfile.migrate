@@ -1,0 +1,12 @@
+# Use the official migrate tool docker image
+FROM migrate/migrate:v4.15.0
+
+# Work in the /migrations directory inside the container
+WORKDIR /migrations
+
+# Copy all migrations from local project into the container
+COPY ./internal/db/migrations .
+
+COPY ./entrypoint.sh .
+
+ENTRYPOINT ["sh", "/migrations/entrypoint.sh"]

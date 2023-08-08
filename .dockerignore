@@ -1,0 +1,57 @@
+# Binaries, object files, libraries etc...
+*.a
+*.o
+*.so
+*.exe
+*.test
+*.prof
+
+# Folders
+vendor/
+
+# Architecture-specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+
+_testmain.go
+
+# IDE/Editor Folders
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# Dependency directories (remove the comment below if you want to ignore them)
+#Godeps/_workspace
+#vendor/
+
+# Node (remove the comment below if you want to ignore them)
+#node_modules
+#npm-debug.log
+#yarn-error.log
+
+# Other
+.DS_Store
+.env
+*.bak
+*.swp
+*~
+# test coverage files
+*.coverprofile
+coverage.txt
+
+# Certificates
+*.crt
+*.key
+*.pem
+
+# Docker files
+Dockerfile*
+
